@@ -9,8 +9,8 @@ import ScrollAnimationWrapper from '@/components/ScrollAnimationWrapper';
 const ParticleSphere = dynamic(() => import('@/components/ParticleSphere'), {
   ssr: false,
   loading: () => (
-    <div className="w-full h-full min-h-[400px] md:min-h-[600px] flex items-center justify-center">
-      <div className="w-16 h-16 border-2 border-[var(--primary)] border-t-transparent rounded-full animate-spin" />
+    <div className="w-full h-full flex items-center justify-center">
+      <div className="w-20 h-20 border-2 border-[var(--primary)] border-t-transparent rounded-full animate-spin" />
     </div>
   ),
 });
@@ -48,63 +48,59 @@ export default function Home() {
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
-        <div className="container-custom w-full">
-          <div className="grid lg:grid-cols-2 gap-8 items-center min-h-screen pt-24 pb-12">
-            {/* Left - 3D Sphere */}
-            <div
-              className={`order-2 lg:order-1 transition-all duration-1000 ${
-                isLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
-              }`}
-            >
-              <ParticleSphere />
-            </div>
+      {/* Hero Section - 球体が主役 */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* 3D Sphere - 画面中央に大きく配置 */}
+        <div
+          className={`absolute inset-0 flex items-center justify-center transition-all duration-1000 ${
+            isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+          }`}
+        >
+          <ParticleSphere />
+        </div>
 
-            {/* Right - Content */}
-            <div
-              className={`order-1 lg:order-2 space-y-8 transition-all duration-1000 delay-300 ${
-                isLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
-              }`}
-            >
-              <div className="space-y-6">
-                <p className="text-[var(--primary)] font-medium tracking-[0.3em] uppercase text-sm">
-                  Scratch Development
-                </p>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                  <span className="gradient-text">業務システム</span>の
-                  <br />
-                  スクラッチ開発
-                </h1>
-                <p className="text-lg text-[var(--muted)] leading-relaxed max-w-lg">
-                  パッケージでは実現できない、お客様専用のシステムを開発。
-                  業務フローに完全にフィットしたオーダーメイドのソリューションをご提供いたします。
-                </p>
-              </div>
+        {/* テキストコンテンツ - 右下に小さく配置 */}
+        <div className="container-custom relative z-10 min-h-screen flex items-end pb-16 md:pb-24">
+          <div
+            className={`max-w-md ml-auto transition-all duration-1000 delay-500 ${
+              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
+          >
+            <p className="text-[var(--primary)] font-medium tracking-[0.3em] uppercase text-xs mb-3">
+              Scratch Development
+            </p>
+            <h1 className="text-2xl md:text-3xl font-bold leading-tight mb-4">
+              <span className="gradient-text">業務システム</span>の
+              <br />
+              スクラッチ開発
+            </h1>
+            <p className="text-sm text-[var(--muted)] leading-relaxed mb-6">
+              パッケージでは実現できない、お客様専用のシステムを開発。
+              業務フローに完全にフィットしたオーダーメイドのソリューションをご提供いたします。
+            </p>
 
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link
-                  href="/contact"
-                  className="btn-primary inline-flex items-center justify-center gap-2"
-                >
-                  お問い合わせ
-                  <ArrowRight className="w-5 h-5" />
-                </Link>
-                <Link
-                  href="/service"
-                  className="btn-secondary inline-flex items-center justify-center gap-2"
-                >
-                  サービス詳細
-                </Link>
-              </div>
+            <div className="flex flex-row gap-3">
+              <Link
+                href="/contact"
+                className="btn-primary text-sm px-5 py-2.5 inline-flex items-center justify-center gap-2"
+              >
+                お問い合わせ
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                href="/service"
+                className="btn-secondary text-sm px-5 py-2.5 inline-flex items-center justify-center gap-2"
+              >
+                サービス詳細
+              </Link>
             </div>
           </div>
         </div>
 
         {/* Background gradient overlay */}
-        <div className="absolute inset-0 -z-10 overflow-hidden">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[var(--primary)] rounded-full mix-blend-multiply filter blur-[150px] opacity-10" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[var(--secondary)] rounded-full mix-blend-multiply filter blur-[150px] opacity-10" />
+        <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
+          <div className="absolute top-1/3 left-1/3 w-[600px] h-[600px] bg-[var(--primary)] rounded-full mix-blend-multiply filter blur-[200px] opacity-5" />
+          <div className="absolute bottom-1/3 right-1/3 w-[600px] h-[600px] bg-[var(--secondary)] rounded-full mix-blend-multiply filter blur-[200px] opacity-5" />
         </div>
       </section>
 
