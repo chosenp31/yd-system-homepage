@@ -113,7 +113,7 @@ export default function ServicePage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="pt-32 pb-16 md:pt-40 md:pb-24">
+      <section className="pt-32 pb-16 md:pt-40 md:pb-24 relative">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -121,6 +121,9 @@ export default function ServicePage() {
             transition={{ duration: 0.8 }}
             className="max-w-4xl mx-auto text-center"
           >
+            <p className="text-[var(--primary)] font-medium tracking-[0.3em] uppercase text-sm mb-6">
+              Our Service
+            </p>
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               <span className="gradient-text">スクラッチ開発</span>で
               <br />
@@ -128,7 +131,6 @@ export default function ServicePage() {
             </h1>
             <p className="text-lg md:text-xl text-[var(--muted)] max-w-2xl mx-auto">
               お客様の業務フローに合わせた
-              <br className="md:hidden" />
               オーダーメイドのシステムをご提供いたします
             </p>
           </motion.div>
@@ -136,18 +138,19 @@ export default function ServicePage() {
       </section>
 
       {/* What is Scratch Development */}
-      <section className="section-padding bg-[var(--background-secondary)]">
+      <section className="section-padding bg-[var(--background-secondary)]/30">
         <div className="container-custom">
           <SectionTitle
+            label="What is Scratch Development"
             title="スクラッチ開発とは"
             subtitle="お客様専用のシステムをゼロから構築する開発手法です"
           />
 
           <ScrollAnimationWrapper>
             <div className="max-w-3xl mx-auto">
-              <div className="bg-[var(--background-card)] rounded-2xl p-8 md:p-12 border border-[var(--border)]">
+              <div className="glass rounded-2xl p-8 md:p-12 border border-[var(--border)]">
                 <div className="flex items-start gap-4 mb-6">
-                  <div className="w-12 h-12 rounded-xl gradient-bg flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 rounded-xl gradient-bg flex items-center justify-center flex-shrink-0 glow">
                     <Lightbulb className="w-6 h-6 text-white" />
                   </div>
                   <div>
@@ -174,6 +177,7 @@ export default function ServicePage() {
       <section className="section-padding">
         <div className="container-custom">
           <SectionTitle
+            label="Why Scratch Development"
             title="なぜスクラッチ開発なのか"
             subtitle="パッケージソフトでお困りではありませんか？"
           />
@@ -181,14 +185,14 @@ export default function ServicePage() {
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {/* Package Problems */}
             <ScrollAnimationWrapper direction="left">
-              <div className="bg-[var(--secondary)]/10 rounded-2xl p-8 border border-[var(--secondary)]/20">
-                <h3 className="text-xl font-bold mb-6 text-[var(--secondary)]">
+              <div className="glass rounded-2xl p-8 border border-red-500/20 bg-red-500/5">
+                <h3 className="text-xl font-bold mb-6 text-red-400">
                   パッケージソフトの課題
                 </h3>
                 <div className="space-y-4">
                   {packageProblems.map((problem, index) => (
                     <div key={index} className="flex items-start gap-3">
-                      <problem.icon className="w-5 h-5 text-[var(--secondary)] flex-shrink-0 mt-1" />
+                      <problem.icon className="w-5 h-5 text-red-400 flex-shrink-0 mt-1" />
                       <div>
                         <p className="font-medium text-[var(--foreground)]">
                           {problem.title}
@@ -205,7 +209,7 @@ export default function ServicePage() {
 
             {/* Scratch Benefits */}
             <ScrollAnimationWrapper direction="right">
-              <div className="bg-[var(--primary)]/10 rounded-2xl p-8 border border-[var(--primary)]/20">
+              <div className="glass rounded-2xl p-8 border border-[var(--primary)]/20 bg-[var(--primary)]/5">
                 <h3 className="text-xl font-bold mb-6 text-[var(--primary)]">
                   スクラッチ開発のメリット
                 </h3>
@@ -231,18 +235,19 @@ export default function ServicePage() {
       </section>
 
       {/* Industries */}
-      <section className="section-padding bg-[var(--background-secondary)]">
+      <section className="section-padding bg-[var(--background-secondary)]/30">
         <div className="container-custom">
           <SectionTitle
+            label="Industries"
             title="対応業界"
             subtitle="様々な業界の業務システム開発に対応いたします"
           />
 
-          <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid md:grid-cols-3 gap-8">
             {industries.map((industry, index) => (
-              <ScrollAnimationWrapper key={industry.name} delay={index * 0.1}>
-                <div className="bg-[var(--background-card)] rounded-2xl p-8 border border-[var(--border)] h-full">
-                  <div className="w-14 h-14 rounded-xl gradient-bg flex items-center justify-center mb-6">
+              <ScrollAnimationWrapper key={industry.name} delay={index * 0.15}>
+                <div className="glass rounded-2xl p-8 border border-[var(--border)] card-hover h-full">
+                  <div className="w-14 h-14 rounded-xl gradient-bg flex items-center justify-center mb-6 glow">
                     <industry.icon className="w-7 h-7 text-white" />
                   </div>
                   <h3 className="text-xl font-bold mb-4 text-[var(--foreground)]">{industry.name}</h3>
@@ -263,7 +268,7 @@ export default function ServicePage() {
           </div>
 
           <ScrollAnimationWrapper>
-            <p className="text-center text-[var(--muted)] mt-8">
+            <p className="text-center text-[var(--muted)] mt-12">
               上記以外の業界・システムについてもお気軽にご相談ください
             </p>
           </ScrollAnimationWrapper>
@@ -274,13 +279,14 @@ export default function ServicePage() {
       <section className="section-padding">
         <div className="container-custom">
           <SectionTitle
+            label="Technology"
             title="技術について"
             subtitle="最先端のクラウド技術で、使いやすく充実した画面を実現"
           />
 
-          <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             {techFeatures.map((feature, index) => (
-              <ScrollAnimationWrapper key={feature.title} delay={index * 0.1}>
+              <ScrollAnimationWrapper key={feature.title} delay={index * 0.15}>
                 <div className="text-center p-6">
                   <div className="w-16 h-16 rounded-2xl bg-[var(--primary)]/10 flex items-center justify-center mx-auto mb-4">
                     <feature.icon className="w-8 h-8 text-[var(--primary)]" />
@@ -305,20 +311,21 @@ export default function ServicePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="section-padding bg-gradient-to-r from-[var(--primary)] to-[var(--accent)]">
-        <div className="container-custom">
+      <section className="section-padding relative overflow-hidden">
+        <div className="absolute inset-0 gradient-bg opacity-90" />
+        <div className="container-custom relative z-10">
           <ScrollAnimationWrapper>
             <div className="text-center text-white">
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
                 まずはお気軽にご相談ください
               </h2>
-              <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
+              <p className="text-lg text-white/80 mb-10 max-w-2xl mx-auto">
                 「こんなシステムが作れるか」「費用感を知りたい」など、
                 どのようなご質問でもお答えいたします。
               </p>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 bg-white text-[var(--primary)] px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition-colors"
+                className="inline-flex items-center gap-2 bg-white text-[var(--primary)] px-8 py-4 rounded-lg font-bold hover:bg-white/90 transition-all hover:scale-105"
               >
                 お問い合わせはこちら
                 <ArrowRight className="w-5 h-5" />

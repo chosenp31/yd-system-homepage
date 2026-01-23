@@ -1,10 +1,19 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { ArrowRight, Code2, Cloud, Rocket, Users, Building2, ShoppingCart } from 'lucide-react';
-import MathBackground from '@/components/MathBackground';
+import dynamic from 'next/dynamic';
+import { ArrowRight, Code2, Cloud, Rocket, Building2, Users, ShoppingCart } from 'lucide-react';
 import ScrollAnimationWrapper from '@/components/ScrollAnimationWrapper';
+
+const ParticleSphere = dynamic(() => import('@/components/ParticleSphere'), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-full min-h-[400px] md:min-h-[600px] flex items-center justify-center">
+      <div className="w-16 h-16 border-2 border-[var(--primary)] border-t-transparent rounded-full animate-spin" />
+    </div>
+  ),
+});
 
 const services = [
   {
@@ -31,83 +40,83 @@ const industries = [
 ];
 
 export default function Home() {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
+
   return (
     <>
-      <MathBackground />
-
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div className="container-custom pt-20">
-          <div className="max-w-4xl mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+      <section className="relative min-h-screen flex items-center overflow-hidden">
+        <div className="container-custom w-full">
+          <div className="grid lg:grid-cols-2 gap-8 items-center min-h-screen pt-24 pb-12">
+            {/* Left - 3D Sphere */}
+            <div
+              className={`order-2 lg:order-1 transition-all duration-1000 ${
+                isLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
+              }`}
             >
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-                <span className="gradient-text">業務システム</span>の
-                <br />
-                スクラッチ開発
-              </h1>
-            </motion.div>
+              <ParticleSphere />
+            </div>
 
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-lg md:text-xl text-[var(--muted)] mb-10 max-w-2xl mx-auto"
+            {/* Right - Content */}
+            <div
+              className={`order-1 lg:order-2 space-y-8 transition-all duration-1000 delay-300 ${
+                isLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
+              }`}
             >
-              パッケージでは実現できない、
-              <br className="md:hidden" />
-              お客様専用のシステムを開発
-            </motion.p>
+              <div className="space-y-6">
+                <p className="text-[var(--primary)] font-medium tracking-[0.3em] uppercase text-sm">
+                  Scratch Development
+                </p>
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                  <span className="gradient-text">業務システム</span>の
+                  <br />
+                  スクラッチ開発
+                </h1>
+                <p className="text-lg text-[var(--muted)] leading-relaxed max-w-lg">
+                  パッケージでは実現できない、お客様専用のシステムを開発。
+                  業務フローに完全にフィットしたオーダーメイドのソリューションをご提供いたします。
+                </p>
+              </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center"
-            >
-              <Link
-                href="/contact"
-                className="btn-primary inline-flex items-center justify-center gap-2 text-lg px-8 py-4"
-              >
-                お問い合わせ
-                <ArrowRight className="w-5 h-5" />
-              </Link>
-              <Link
-                href="/service"
-                className="btn-secondary inline-flex items-center justify-center gap-2 text-lg px-8 py-4"
-              >
-                サービス詳細
-              </Link>
-            </motion.div>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link
+                  href="/contact"
+                  className="btn-primary inline-flex items-center justify-center gap-2"
+                >
+                  お問い合わせ
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
+                <Link
+                  href="/service"
+                  className="btn-secondary inline-flex items-center justify-center gap-2"
+                >
+                  サービス詳細
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        >
-          <div className="w-6 h-10 border-2 border-[var(--border)] rounded-full flex justify-center">
-            <motion.div
-              animate={{ y: [0, 12, 0] }}
-              transition={{ repeat: Infinity, duration: 1.5 }}
-              className="w-1.5 h-1.5 bg-[var(--primary)] rounded-full mt-2"
-            />
-          </div>
-        </motion.div>
+        {/* Background gradient overlay */}
+        <div className="absolute inset-0 -z-10 overflow-hidden">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[var(--primary)] rounded-full mix-blend-multiply filter blur-[150px] opacity-10" />
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[var(--secondary)] rounded-full mix-blend-multiply filter blur-[150px] opacity-10" />
+        </div>
       </section>
 
       {/* Services Section */}
-      <section className="section-padding bg-[var(--background-secondary)]">
+      <section className="section-padding relative">
         <div className="container-custom">
           <ScrollAnimationWrapper>
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              <p className="text-[var(--primary)] font-medium tracking-[0.3em] uppercase text-sm mb-4">
+                Our Services
+              </p>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">
                 <span className="gradient-text">サービス</span>
               </h2>
               <p className="text-[var(--muted)] max-w-2xl mx-auto">
@@ -118,15 +127,15 @@ export default function Home() {
 
           <div className="grid md:grid-cols-3 gap-8">
             {services.map((service, index) => (
-              <ScrollAnimationWrapper key={service.title} delay={index * 0.1}>
-                <div className="bg-[var(--background-card)] rounded-2xl p-8 border border-[var(--border)] card-hover h-full">
-                  <div className="w-14 h-14 rounded-xl gradient-bg flex items-center justify-center mb-6">
+              <ScrollAnimationWrapper key={service.title} delay={index * 0.15}>
+                <div className="glass rounded-2xl p-8 card-hover h-full border border-[var(--border)]">
+                  <div className="w-14 h-14 rounded-xl gradient-bg flex items-center justify-center mb-6 glow">
                     <service.icon className="w-7 h-7 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold mb-3 text-[var(--foreground)]">
+                  <h3 className="text-xl font-bold mb-4 text-[var(--foreground)]">
                     {service.title}
                   </h3>
-                  <p className="text-[var(--muted)]">
+                  <p className="text-[var(--muted)] leading-relaxed">
                     {service.description}
                   </p>
                 </div>
@@ -138,7 +147,7 @@ export default function Home() {
             <div className="text-center mt-12">
               <Link
                 href="/service"
-                className="text-[var(--primary)] hover:underline inline-flex items-center gap-1"
+                className="text-[var(--primary)] hover:text-[var(--primary-light)] inline-flex items-center gap-2 transition-colors"
               >
                 サービス詳細を見る
                 <ArrowRight className="w-4 h-4" />
@@ -149,11 +158,14 @@ export default function Home() {
       </section>
 
       {/* Industries Section */}
-      <section className="section-padding">
+      <section className="section-padding bg-[var(--background-secondary)]/30">
         <div className="container-custom">
           <ScrollAnimationWrapper>
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              <p className="text-[var(--primary)] font-medium tracking-[0.3em] uppercase text-sm mb-4">
+                Industries
+              </p>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">
                 <span className="gradient-text">対応業界</span>
               </h2>
               <p className="text-[var(--muted)] max-w-2xl mx-auto">
@@ -162,14 +174,14 @@ export default function Home() {
             </div>
           </ScrollAnimationWrapper>
 
-          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             {industries.map((industry, index) => (
-              <ScrollAnimationWrapper key={industry.name} delay={index * 0.1}>
-                <div className="text-center p-8 rounded-2xl border border-[var(--border)] bg-[var(--background-card)] card-hover">
-                  <div className="w-16 h-16 rounded-2xl bg-[var(--primary)]/10 flex items-center justify-center mx-auto mb-4">
+              <ScrollAnimationWrapper key={industry.name} delay={index * 0.15}>
+                <div className="text-center p-8 rounded-2xl glass border border-[var(--border)] card-hover">
+                  <div className="w-16 h-16 rounded-2xl bg-[var(--primary)]/10 flex items-center justify-center mx-auto mb-6">
                     <industry.icon className="w-8 h-8 text-[var(--primary)]" />
                   </div>
-                  <h3 className="font-bold mb-2 text-[var(--foreground)]">{industry.name}</h3>
+                  <h3 className="font-bold mb-3 text-[var(--foreground)]">{industry.name}</h3>
                   <p className="text-sm text-[var(--muted)]">{industry.description}</p>
                 </div>
               </ScrollAnimationWrapper>
@@ -177,7 +189,7 @@ export default function Home() {
           </div>
 
           <ScrollAnimationWrapper>
-            <p className="text-center text-[var(--muted)] mt-8">
+            <p className="text-center text-[var(--muted)] mt-12">
               上記以外の業界もお気軽にご相談ください
             </p>
           </ScrollAnimationWrapper>
@@ -185,21 +197,21 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="section-padding bg-gradient-to-r from-[var(--primary)] to-[var(--accent)]">
-        <div className="container-custom">
+      <section className="section-padding relative overflow-hidden">
+        <div className="absolute inset-0 gradient-bg opacity-90" />
+        <div className="container-custom relative z-10">
           <ScrollAnimationWrapper>
             <div className="text-center text-white">
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
                 まずはお気軽にご相談ください
               </h2>
-              <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
+              <p className="text-lg text-white/80 mb-10 max-w-2xl mx-auto">
                 「こんなシステムが作れるか」「費用感を知りたい」など、
-                <br className="hidden md:block" />
                 どのようなご質問でもお答えいたします。
               </p>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 bg-white text-[var(--primary)] px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition-colors"
+                className="inline-flex items-center gap-2 bg-white text-[var(--primary)] px-8 py-4 rounded-lg font-bold hover:bg-white/90 transition-all hover:scale-105"
               >
                 お問い合わせはこちら
                 <ArrowRight className="w-5 h-5" />

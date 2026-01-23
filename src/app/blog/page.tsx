@@ -16,6 +16,9 @@ export default function BlogPage() {
       <section className="pt-32 pb-16 md:pt-40 md:pb-24">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
+            <p className="text-[var(--primary)] font-medium tracking-[0.3em] uppercase text-sm mb-6">
+              Blog
+            </p>
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               <span className="gradient-text">ブログ</span>
             </h1>
@@ -29,7 +32,7 @@ export default function BlogPage() {
       </section>
 
       {/* Blog List */}
-      <section className="section-padding bg-[var(--background-secondary)]">
+      <section className="section-padding bg-[var(--background-secondary)]/30">
         <div className="container-custom">
           {posts.length === 0 ? (
             <div className="text-center py-12">

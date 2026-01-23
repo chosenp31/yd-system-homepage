@@ -67,6 +67,9 @@ export default function ContactPage() {
             transition={{ duration: 0.8 }}
             className="max-w-4xl mx-auto text-center"
           >
+            <p className="text-[var(--primary)] font-medium tracking-[0.3em] uppercase text-sm mb-6">
+              Contact Us
+            </p>
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               <span className="gradient-text">お問い合わせ</span>
             </h1>
@@ -80,12 +83,12 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Form */}
-      <section className="section-padding bg-[var(--background-secondary)]">
+      <section className="section-padding bg-[var(--background-secondary)]/30">
         <div className="container-custom">
           <ScrollAnimationWrapper>
             <div className="max-w-2xl mx-auto">
               {formStatus === 'success' ? (
-                <div className="bg-[var(--background-card)] rounded-2xl p-8 md:p-12 border border-[var(--border)] text-center">
+                <div className="glass rounded-2xl p-8 md:p-12 border border-[var(--border)] text-center">
                   <div className="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center mx-auto mb-6">
                     <CheckCircle2 className="w-8 h-8 text-green-500" />
                   </div>
@@ -107,7 +110,7 @@ export default function ContactPage() {
               ) : (
                 <form
                   onSubmit={handleSubmit}
-                  className="bg-[var(--background-card)] rounded-2xl p-8 md:p-12 border border-[var(--border)]"
+                  className="glass rounded-2xl p-8 md:p-12 border border-[var(--border)]"
                 >
                   {formStatus === 'error' && (
                     <div className="mb-6 p-4 bg-[var(--secondary)]/10 border border-[var(--secondary)]/20 rounded-lg flex items-start gap-3">

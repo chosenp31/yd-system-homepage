@@ -1,23 +1,29 @@
 @import "tailwindcss";
 
 :root {
-  /* ダークテーマベース */
-  --background: #0a0a0b;
-  --background-secondary: #111113;
-  --background-card: #1a1a1c;
+  /* パープル/ネイビー ダークテーマ */
+  --background: #0a0a1a;
+  --background-secondary: #0d0d24;
+  --background-card: #12122a;
   --foreground: #ffffff;
-  --foreground-secondary: #e5e5e5;
+  --foreground-secondary: #e0e0ff;
 
-  /* オレンジ/赤アクセント */
-  --primary: #ff6b35;
-  --primary-light: #ff8c5a;
-  --primary-dark: #e85a2a;
-  --secondary: #ff4444;
-  --accent: #ff9500;
+  /* ブルー/パープル アクセント */
+  --primary: #4f7cff;
+  --primary-light: #7ba3ff;
+  --primary-dark: #3a5fcc;
+  --secondary: #8b5cf6;
+  --accent: #06b6d4;
+  --glow: #4f7cff;
+
+  /* グラデーション */
+  --gradient-start: #0a0a1a;
+  --gradient-mid: #1a1a3e;
+  --gradient-end: #0d0d24;
 
   /* ユーティリティ */
-  --muted: #888888;
-  --border: #2a2a2c;
+  --muted: #9090b0;
+  --border: #2a2a4a;
 }
 
 @theme inline {
@@ -31,6 +37,7 @@
   --color-primary-dark: var(--primary-dark);
   --color-secondary: var(--secondary);
   --color-accent: var(--accent);
+  --color-glow: var(--glow);
   --color-muted: var(--muted);
   --color-border: var(--border);
   --font-sans: var(--font-geist-sans);
@@ -38,9 +45,11 @@
 }
 
 body {
-  background: var(--background);
+  background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-mid) 50%, var(--gradient-end) 100%);
+  background-attachment: fixed;
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
+  letter-spacing: 0.02em;
 }
 
 /* Smooth scrolling */
@@ -56,7 +65,7 @@ html {
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -65,7 +74,7 @@ html {
 
 ::-webkit-scrollbar-thumb {
   background: var(--border);
-  border-radius: 4px;
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -93,7 +102,7 @@ html {
   }
 }
 
-@keyframes slideInLeft {
+@keyframes fadeInLeft {
   from {
     opacity: 0;
     transform: translateX(-30px);
@@ -104,7 +113,7 @@ html {
   }
 }
 
-@keyframes slideInRight {
+@keyframes fadeInRight {
   from {
     opacity: 0;
     transform: translateX(30px);
@@ -115,14 +124,12 @@ html {
   }
 }
 
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
+@keyframes pulse-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 20px rgba(79, 124, 255, 0.4));
   }
-  to {
-    opacity: 1;
-    transform: scale(1);
+  50% {
+    filter: drop-shadow(0 0 40px rgba(79, 124, 255, 0.8));
   }
 }
 
@@ -131,63 +138,37 @@ html {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-10px);
-  }
-}
-
-@keyframes pulse-glow {
-  0%, 100% {
-    box-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 40px rgba(255, 107, 53, 0.5);
-  }
-}
-
-@keyframes code-scroll {
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(-50%);
+    transform: translateY(-15px);
   }
 }
 
 .animate-fade-in-up {
-  animation: fadeInUp 0.6s ease-out forwards;
+  animation: fadeInUp 0.8s ease-out forwards;
 }
 
 .animate-fade-in {
-  animation: fadeIn 0.6s ease-out forwards;
+  animation: fadeIn 0.8s ease-out forwards;
 }
 
-.animate-slide-in-left {
-  animation: slideInLeft 0.6s ease-out forwards;
+.animate-fade-in-left {
+  animation: fadeInLeft 0.8s ease-out forwards;
 }
 
-.animate-slide-in-right {
-  animation: slideInRight 0.6s ease-out forwards;
-}
-
-.animate-scale-in {
-  animation: scaleIn 0.6s ease-out forwards;
-}
-
-.animate-float {
-  animation: float 3s ease-in-out infinite;
+.animate-fade-in-right {
+  animation: fadeInRight 0.8s ease-out forwards;
 }
 
 .animate-pulse-glow {
-  animation: pulse-glow 2s ease-in-out infinite;
+  animation: pulse-glow 3s ease-in-out infinite;
 }
 
-.animate-code-scroll {
-  animation: code-scroll 30s linear infinite;
+.animate-float {
+  animation: float 4s ease-in-out infinite;
 }
 
 /* Gradient text */
 .gradient-text {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 50%, var(--secondary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -195,79 +176,107 @@ html {
 
 /* Gradient background */
 .gradient-bg {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
 }
 
-/* Glass effect - dark theme */
+/* Glass effect */
 .glass {
-  background: rgba(26, 26, 28, 0.8);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--border);
+  background: rgba(18, 18, 42, 0.6);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(79, 124, 255, 0.1);
+}
+
+/* Glow effect */
+.glow {
+  box-shadow: 0 0 30px rgba(79, 124, 255, 0.3);
+}
+
+.glow-text {
+  text-shadow: 0 0 20px rgba(79, 124, 255, 0.5);
 }
 
 /* Card hover effect */
 .card-hover {
-  transition: all 0.3s ease;
+  transition: all 0.4s ease;
 }
 
 .card-hover:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(255, 107, 53, 0.1);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(79, 124, 255, 0.15);
+  border-color: rgba(79, 124, 255, 0.3);
 }
 
 /* Button styles */
 .btn-primary {
-  background: var(--primary);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
   color: white;
-  padding: 0.75rem 1.5rem;
+  padding: 0.875rem 2rem;
   border-radius: 0.5rem;
   font-weight: 500;
+  letter-spacing: 0.05em;
   transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-primary:hover::before {
+  left: 100%;
 }
 
 .btn-primary:hover {
-  background: var(--primary-light);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(255, 107, 53, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(79, 124, 255, 0.4);
 }
 
 .btn-secondary {
   background: transparent;
   color: var(--primary);
-  padding: 0.75rem 1.5rem;
+  padding: 0.875rem 2rem;
   border-radius: 0.5rem;
   font-weight: 500;
-  border: 2px solid var(--primary);
+  letter-spacing: 0.05em;
+  border: 1px solid var(--primary);
   transition: all 0.3s ease;
 }
 
 .btn-secondary:hover {
-  background: var(--primary);
-  color: white;
-  transform: translateY(-2px);
+  background: rgba(79, 124, 255, 0.1);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(79, 124, 255, 0.2);
 }
 
 /* Section padding */
 .section-padding {
-  padding: 5rem 1rem;
+  padding: 6rem 1rem;
 }
 
 @media (min-width: 768px) {
   .section-padding {
-    padding: 7rem 2rem;
+    padding: 8rem 2rem;
   }
 }
 
 /* Container */
 .container-custom {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 1.5rem;
 }
 
 @media (min-width: 768px) {
   .container-custom {
-    padding: 0 2rem;
+    padding: 0 3rem;
   }
 }
 
@@ -286,7 +295,7 @@ html {
 
 .prose-dark h2 {
   font-size: 1.5rem;
-  margin-top: 2rem;
+  margin-top: 2.5rem;
   margin-bottom: 1rem;
   border-bottom: 1px solid var(--border);
   padding-bottom: 0.5rem;
@@ -294,13 +303,13 @@ html {
 
 .prose-dark h3 {
   font-size: 1.25rem;
-  margin-top: 1.5rem;
+  margin-top: 2rem;
   margin-bottom: 0.75rem;
 }
 
 .prose-dark p {
-  margin-bottom: 1rem;
-  line-height: 1.8;
+  margin-bottom: 1.25rem;
+  line-height: 1.9;
 }
 
 .prose-dark a {
@@ -324,7 +333,8 @@ html {
   padding: 1rem;
   border-radius: 0.5rem;
   overflow-x: auto;
-  margin: 1rem 0;
+  margin: 1.5rem 0;
+  border: 1px solid var(--border);
 }
 
 .prose-dark pre code {
@@ -334,7 +344,7 @@ html {
 
 .prose-dark ul,
 .prose-dark ol {
-  margin: 1rem 0;
+  margin: 1.25rem 0;
   padding-left: 1.5rem;
 }
 
@@ -345,7 +355,7 @@ html {
 .prose-dark blockquote {
   border-left: 4px solid var(--primary);
   padding-left: 1rem;
-  margin: 1rem 0;
+  margin: 1.5rem 0;
   color: var(--muted);
   font-style: italic;
 }

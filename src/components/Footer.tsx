@@ -1,41 +1,45 @@
 import Link from 'next/link';
 
 const navigation = [
-  { name: 'サービス', href: '/service' },
-  { name: 'ブログ', href: '/blog' },
-  { name: '会社概要', href: '/company' },
-  { name: 'お問い合わせ', href: '/contact' },
+  { name: 'Home', href: '/' },
+  { name: 'Service', href: '/service' },
+  { name: 'Blog', href: '/blog' },
+  { name: 'Company', href: '/company' },
+  { name: 'Contact', href: '/contact' },
 ];
 
 export default function Footer() {
   return (
-    <footer className="bg-[var(--background-secondary)] border-t border-[var(--border)]">
-      <div className="container-custom py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+    <footer className="border-t border-[var(--border)] bg-[var(--background-secondary)]/50">
+      <div className="container-custom py-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Company Info */}
-          <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 rounded-lg gradient-bg flex items-center justify-center">
+          <div className="space-y-6">
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 rounded-lg gradient-bg flex items-center justify-center glow">
                 <span className="text-white font-bold text-lg">yd</span>
               </div>
-              <span className="font-bold text-lg text-[var(--foreground)]">ydシステム</span>
+              <span className="font-semibold text-lg tracking-wider text-[var(--foreground)]">
+                ydシステム
+              </span>
             </div>
-            <p className="text-[var(--muted)] text-sm leading-relaxed">
+            <p className="text-[var(--muted)] text-sm leading-relaxed max-w-xs">
               お客様の業務課題を解決する
-              <br />
               オーダーメイドの業務システムを開発いたします。
             </p>
           </div>
 
           {/* Navigation */}
           <div>
-            <h3 className="font-bold mb-4 text-lg text-[var(--foreground)]">ページ</h3>
-            <ul className="space-y-2">
+            <h3 className="font-semibold mb-6 text-sm tracking-wider uppercase text-[var(--foreground)]">
+              Navigation
+            </h3>
+            <ul className="space-y-3">
               {navigation.map((item) => (
                 <li key={item.name}>
                   <Link
                     href={item.href}
-                    className="text-[var(--muted)] hover:text-[var(--primary)] transition-colors duration-200"
+                    className="text-[var(--muted)] hover:text-[var(--primary)] transition-colors duration-300 text-sm tracking-wide"
                   >
                     {item.name}
                   </Link>
@@ -46,8 +50,10 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h3 className="font-bold mb-4 text-lg text-[var(--foreground)]">会社情報</h3>
-            <ul className="space-y-2 text-[var(--muted)]">
+            <h3 className="font-semibold mb-6 text-sm tracking-wider uppercase text-[var(--foreground)]">
+              Company
+            </h3>
+            <ul className="space-y-3 text-[var(--muted)] text-sm">
               <li>ydシステム会社</li>
               <li>東京都品川区</li>
             </ul>
@@ -55,8 +61,10 @@ export default function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="border-t border-[var(--border)] mt-12 pt-8 text-center text-[var(--muted)] text-sm">
-          <p>&copy; {new Date().getFullYear()} ydシステム会社. All rights reserved.</p>
+        <div className="border-t border-[var(--border)] mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-[var(--muted)] text-sm tracking-wide">
+            &copy; {new Date().getFullYear()} ydシステム会社. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

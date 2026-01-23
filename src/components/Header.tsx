@@ -6,10 +6,11 @@ import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const navigation = [
-  { name: 'サービス', href: '/service' },
-  { name: 'ブログ', href: '/blog' },
-  { name: '会社概要', href: '/company' },
-  { name: 'お問い合わせ', href: '/contact' },
+  { name: 'Home', href: '/' },
+  { name: 'Service', href: '/service' },
+  { name: 'Blog', href: '/blog' },
+  { name: 'Company', href: '/company' },
+  { name: 'Contact', href: '/contact' },
 ];
 
 export default function Header() {
@@ -18,7 +19,7 @@ export default function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      setIsScrolled(window.scrollY > 50);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -26,41 +27,35 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? 'bg-[var(--background)]/90 backdrop-blur-md border-b border-[var(--border)]'
+          ? 'glass border-b border-[var(--border)]'
           : 'bg-transparent'
       }`}
     >
       <nav className="container-custom">
-        <div className="flex items-center justify-between h-16 md:h-20">
+        <div className="flex items-center justify-between h-20 md:h-24">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="w-10 h-10 rounded-lg gradient-bg flex items-center justify-center">
+          <Link href="/" className="flex items-center space-x-3 group">
+            <div className="w-10 h-10 rounded-lg gradient-bg flex items-center justify-center glow transition-all duration-300 group-hover:scale-105">
               <span className="text-white font-bold text-lg">yd</span>
             </div>
-            <span className="font-bold text-lg text-[var(--foreground)]">
+            <span className="font-semibold text-lg tracking-wider text-[var(--foreground)]">
               ydシステム
             </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-10">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-[var(--foreground-secondary)] hover:text-[var(--primary)] transition-colors duration-200 font-medium"
+                className="text-[var(--foreground-secondary)] hover:text-[var(--primary)] transition-all duration-300 font-medium tracking-wider text-sm uppercase"
               >
                 {item.name}
               </Link>
             ))}
-            <Link
-              href="/contact"
-              className="btn-primary inline-flex items-center"
-            >
-              お問い合わせ
-            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -86,26 +81,19 @@ export default function Header() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-[var(--background-secondary)] border-t border-[var(--border)]"
+            className="md:hidden glass border-t border-[var(--border)]"
           >
-            <div className="container-custom py-4 space-y-4">
+            <div className="container-custom py-6 space-y-4">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="block py-2 text-[var(--foreground-secondary)] hover:text-[var(--primary)] transition-colors font-medium"
+                  className="block py-3 text-[var(--foreground-secondary)] hover:text-[var(--primary)] transition-colors font-medium tracking-wider text-sm uppercase"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item.name}
                 </Link>
               ))}
-              <Link
-                href="/contact"
-                className="btn-primary inline-block w-full text-center"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                お問い合わせ
-              </Link>
             </div>
           </motion.div>
         )}

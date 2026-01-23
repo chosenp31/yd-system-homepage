@@ -111,8 +111,9 @@ export default async function BlogPostPage({ params }: Props) {
       </section>
 
       {/* CTA */}
-      <section className="section-padding bg-gradient-to-r from-[var(--primary)] to-[var(--accent)]">
-        <div className="container-custom">
+      <section className="section-padding relative overflow-hidden">
+        <div className="absolute inset-0 gradient-bg opacity-90" />
+        <div className="container-custom relative z-10">
           <div className="text-center text-white">
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
               システム開発のご相談
@@ -124,7 +125,7 @@ export default async function BlogPostPage({ params }: Props) {
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 bg-white text-[var(--primary)] px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition-colors"
+              className="inline-flex items-center gap-2 bg-white text-[var(--primary)] px-8 py-4 rounded-lg font-bold hover:bg-white/90 transition-all hover:scale-105"
             >
               お問い合わせはこちら
             </Link>
