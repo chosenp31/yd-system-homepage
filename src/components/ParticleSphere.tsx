@@ -344,18 +344,6 @@ function Scene() {
 export default function ParticleSphere() {
   return (
     <div className="w-full h-screen relative">
-      {/* グローエフェクト背景 - 画面全体をカバー */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* メイングロー - 中央 */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120vw] h-[120vh] rounded-full bg-[#4f7cff]/10 blur-[150px]" />
-        {/* セカンドグロー - 中央やや上 */}
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100vh] rounded-full bg-[#8b5cf6]/8 blur-[120px]" />
-        {/* サードグロー - 中央やや下 */}
-        <div className="absolute top-2/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vh] rounded-full bg-[#06b6d4]/6 blur-[100px]" />
-        {/* コアグロー */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[50vw] h-[50vh] rounded-full bg-[#4f7cff]/12 blur-[80px]" />
-      </div>
-
       <Canvas
         camera={{ position: [0, 0, 12], fov: 60 }}
         style={{ background: 'transparent' }}

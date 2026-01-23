@@ -49,7 +49,15 @@ export default function Home() {
   return (
     <>
       {/* Hero Section - 球体が主役 */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center">
+        {/* グロー背景 - 画面全体をカバー（fixedで固定） */}
+        <div className="fixed inset-0 pointer-events-none -z-10">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150vmax] h-[150vmax] rounded-full bg-[#4f7cff]/10 blur-[200px]" />
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120vmax] h-[120vmax] rounded-full bg-[#8b5cf6]/8 blur-[180px]" />
+          <div className="absolute top-3/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vmax] h-[100vmax] rounded-full bg-[#06b6d4]/6 blur-[150px]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vmax] h-[60vmax] rounded-full bg-[#4f7cff]/15 blur-[100px]" />
+        </div>
+
         {/* 3D Sphere - 画面中央に大きく配置 */}
         <div
           className={`absolute inset-0 flex items-center justify-center transition-all duration-1000 ${
@@ -95,12 +103,6 @@ export default function Home() {
               </Link>
             </div>
           </div>
-        </div>
-
-        {/* Background gradient overlay */}
-        <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/3 left-1/3 w-[600px] h-[600px] bg-[var(--primary)] rounded-full mix-blend-multiply filter blur-[200px] opacity-5" />
-          <div className="absolute bottom-1/3 right-1/3 w-[600px] h-[600px] bg-[var(--secondary)] rounded-full mix-blend-multiply filter blur-[200px] opacity-5" />
         </div>
       </section>
 
