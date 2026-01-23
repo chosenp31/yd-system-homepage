@@ -113,7 +113,7 @@ function SurfaceParticles() {
   );
 }
 
-// 浮遊する光の粒子（周囲）
+// 浮遊する光の粒子（球体周囲）
 function FloatingParticles() {
   const ref = useRef<THREE.Points>(null);
   const particlesCount = 800;
@@ -152,6 +152,120 @@ function FloatingParticles() {
         sizeAttenuation={true}
         depthWrite={false}
         blending={THREE.AdditiveBlending}
+      />
+    </Points>
+  );
+}
+
+// 画面全体に広がる星のようなパーティクル
+function BackgroundStars() {
+  const ref = useRef<THREE.Points>(null);
+  const particlesCount = 2000;
+
+  const positions = useMemo(() => {
+    const pos = new Float32Array(particlesCount * 3);
+    for (let i = 0; i < particlesCount; i++) {
+      // 画面全体に広げる（-30〜30の範囲）
+      pos[i * 3] = (Math.random() - 0.5) * 60;
+      pos[i * 3 + 1] = (Math.random() - 0.5) * 60;
+      pos[i * 3 + 2] = (Math.random() - 0.5) * 30 - 5; // 奥に配置
+    }
+    return pos;
+  }, []);
+
+  useFrame((state) => {
+    if (ref.current) {
+      ref.current.rotation.y = state.clock.elapsedTime * 0.01;
+      ref.current.rotation.x = state.clock.elapsedTime * 0.005;
+    }
+  });
+
+  return (
+    <Points ref={ref} positions={positions} stride={3} frustumCulled={false}>
+      <PointMaterial
+        transparent
+        color="#8b9aff"
+        size={0.03}
+        sizeAttenuation={true}
+        depthWrite={false}
+        blending={THREE.AdditiveBlending}
+        opacity={0.8}
+      />
+    </Points>
+  );
+}
+
+// 大きめの明るい星（アクセント）
+function BrightStars() {
+  const ref = useRef<THREE.Points>(null);
+  const particlesCount = 300;
+
+  const positions = useMemo(() => {
+    const pos = new Float32Array(particlesCount * 3);
+    for (let i = 0; i < particlesCount; i++) {
+      pos[i * 3] = (Math.random() - 0.5) * 50;
+      pos[i * 3 + 1] = (Math.random() - 0.5) * 50;
+      pos[i * 3 + 2] = (Math.random() - 0.5) * 25 - 3;
+    }
+    return pos;
+  }, []);
+
+  useFrame((state) => {
+    if (ref.current) {
+      ref.current.rotation.y = state.clock.elapsedTime * 0.008;
+      // キラキラ効果
+      const material = ref.current.material as THREE.PointsMaterial;
+      material.opacity = 0.6 + Math.sin(state.clock.elapsedTime * 2) * 0.3;
+    }
+  });
+
+  return (
+    <Points ref={ref} positions={positions} stride={3} frustumCulled={false}>
+      <PointMaterial
+        transparent
+        color="#ffffff"
+        size={0.06}
+        sizeAttenuation={true}
+        depthWrite={false}
+        blending={THREE.AdditiveBlending}
+        opacity={0.7}
+      />
+    </Points>
+  );
+}
+
+// 青い星（画面全体）
+function BlueStars() {
+  const ref = useRef<THREE.Points>(null);
+  const particlesCount = 500;
+
+  const positions = useMemo(() => {
+    const pos = new Float32Array(particlesCount * 3);
+    for (let i = 0; i < particlesCount; i++) {
+      pos[i * 3] = (Math.random() - 0.5) * 55;
+      pos[i * 3 + 1] = (Math.random() - 0.5) * 55;
+      pos[i * 3 + 2] = (Math.random() - 0.5) * 20 - 8;
+    }
+    return pos;
+  }, []);
+
+  useFrame((state) => {
+    if (ref.current) {
+      ref.current.rotation.y = -state.clock.elapsedTime * 0.006;
+      ref.current.rotation.z = state.clock.elapsedTime * 0.003;
+    }
+  });
+
+  return (
+    <Points ref={ref} positions={positions} stride={3} frustumCulled={false}>
+      <PointMaterial
+        transparent
+        color="#4fc3ff"
+        size={0.045}
+        sizeAttenuation={true}
+        depthWrite={false}
+        blending={THREE.AdditiveBlending}
+        opacity={0.9}
       />
     </Points>
   );
@@ -303,6 +417,11 @@ function Scene() {
       <ambientLight intensity={0.3} />
       <pointLight position={[15, 15, 15]} intensity={0.5} color="#4f9fff" />
       <pointLight position={[-15, -15, -15]} intensity={0.3} color="#8b5cf6" />
+
+      {/* 背景の星（画面全体） */}
+      <BackgroundStars />
+      <BrightStars />
+      <BlueStars />
 
       {/* コア */}
       <CoreGlow />
