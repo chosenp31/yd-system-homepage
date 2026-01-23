@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { ArrowRight } from 'lucide-react';
-import ScrollAnimationWrapper from '@/components/ScrollAnimationWrapper';
 
 const ParticleSphere = dynamic(() => import('@/components/ParticleSphere'), {
   ssr: false,
@@ -79,31 +78,6 @@ export default function Home() {
               </Link>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="section-padding relative overflow-hidden">
-        <div className="absolute inset-0 gradient-bg opacity-90" />
-        <div className="container-custom relative z-10">
-          <ScrollAnimationWrapper>
-            <div className="text-center text-white">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                まずはお気軽にご相談ください
-              </h2>
-              <p className="text-lg text-white/80 mb-10 max-w-2xl mx-auto">
-                「こんなシステムが作れるか」「費用感を知りたい」など、
-                どのようなご質問でもお答えいたします。
-              </p>
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 bg-white text-[var(--primary)] px-8 py-4 rounded-lg font-bold hover:bg-white/90 transition-all hover:scale-105"
-              >
-                お問い合わせはこちら
-                <ArrowRight className="w-5 h-5" />
-              </Link>
-            </div>
-          </ScrollAnimationWrapper>
         </div>
       </section>
     </>
