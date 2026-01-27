@@ -12,14 +12,18 @@
     "@formspree/react": "^3.0.0",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.5.0",
+    "@vercel/og": "^0.8.6",
     "framer-motion": "^12.26.2",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.562.0",
+    "mermaid": "^11.12.2",
     "next": "16.1.2",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "remark": "^15.0.1",
+    "remark-gfm": "^4.0.1",
     "remark-html": "^16.0.1",
+    "remark-mermaid-plugin": "^1.0.2",
     "three": "^0.182.0"
   },
   "devDependencies": {

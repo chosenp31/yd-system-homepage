@@ -1,8 +1,12 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import Script from 'next/script';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+
+// Google Analytics ID
+const GA_ID = 'G-4487N33Z54';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -16,50 +20,80 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: 'ydシステム会社 | 業務システムのスクラッチ開発',
-    template: '%s | ydシステム会社',
+    default: 'YDシステム | AIで、業務を進化させる',
+    template: '%s | YDシステム',
   },
   description:
-    'ydシステム会社は、不動産・人材・販売代理店向けの業務システムをスクラッチ開発いたします。パッケージでは解決できない課題を、お客様の業務フローに合わせたオーダーメイドシステムで解決します。',
+    'AI技術を活用したシステム開発で、外注コストを大幅削減。IT人材がいなくても、御社専用のシステムを構築できます。内製化・DX推進をYDシステムが支援します。',
   keywords: [
-    '業務システム開発',
-    'スクラッチ開発',
-    '受託開発',
-    '不動産システム',
-    '人材管理システム',
-    '顧客管理システム',
-    '東京',
+    'AI システム開発',
+    'システム内製化',
+    'システム開発 コスト削減',
+    '中小企業 システム開発',
+    'DX推進',
+    'AI活用',
+    '外注 脱却',
+    '業務システム',
   ],
-  authors: [{ name: 'ydシステム会社' }],
+  authors: [{ name: 'YDシステム' }],
   icons: {
     icon: '/favicon.svg',
   },
   openGraph: {
     type: 'website',
     locale: 'ja_JP',
-    url: 'https://yd-system.co.jp',
-    siteName: 'ydシステム会社',
-    title: 'ydシステム会社 | 業務システムのスクラッチ開発',
+    url: 'https://www.yd-system.com',
+    siteName: 'YDシステム',
+    title: 'YDシステム | AIで、業務を進化させる',
     description:
-      'お客様の業務課題を解決するオーダーメイドの業務システムを開発いたします。',
+      'AI技術を活用したシステム開発で、外注コストを大幅削減。IT人材がいなくても、御社専用のシステムを構築。',
     images: [
       {
         url: '/og-image.svg',
         width: 1200,
         height: 630,
-        alt: 'ydシステム会社',
+        alt: 'YDシステム - AIで、業務を進化させる',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'ydシステム会社 | 業務システムのスクラッチ開発',
+    title: 'YDシステム | AIで、業務を進化させる',
     description:
-      'お客様の業務課題を解決するオーダーメイドの業務システムを開発いたします。',
+      'AI技術を活用したシステム開発で、外注コストを大幅削減。IT人材がいなくても、御社専用のシステムを構築。',
   },
   robots: {
     index: true,
     follow: true,
+  },
+};
+
+// 組織の構造化データ
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'YDシステム',
+  url: 'https://www.yd-system.com',
+  logo: 'https://www.yd-system.com/favicon.svg',
+  description: 'AI技術を活用したシステム開発で、外注コストを大幅削減。システム内製化・DX推進を支援します。',
+  sameAs: [],
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'customer service',
+    url: 'https://www.yd-system.com/contact',
+  },
+};
+
+// WebサイトのJSON-LD
+const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'YDシステム',
+  url: 'https://www.yd-system.com',
+  description: 'AI技術を活用したシステム開発で、IT人材がいなくても御社専用のシステムを構築。内製化・DX推進を支援。',
+  publisher: {
+    '@type': 'Organization',
+    name: 'YDシステム',
   },
 };
 
@@ -70,6 +104,37 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
+      <head>
+        {/* Google Analytics */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_ID}');
+          `}
+        </Script>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
+        {/* YD Analytics トラッキング - デプロイ後にURLを更新 */}
+        {process.env.NEXT_PUBLIC_ANALYTICS_URL && (
+          <script
+            src={`${process.env.NEXT_PUBLIC_ANALYTICS_URL}/tracker.js`}
+            data-site-id="yd-system"
+            defer
+          />
+        )}
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

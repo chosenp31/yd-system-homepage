@@ -7,18 +7,134 @@ import ScrollAnimationWrapper from '@/components/ScrollAnimationWrapper';
 
 type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
 
+// フリーメールドメインのリスト
+const freeEmailDomains = [
+  'gmail.com',
+  'yahoo.co.jp',
+  'yahoo.com',
+  'hotmail.com',
+  'hotmail.co.jp',
+  'outlook.com',
+  'outlook.jp',
+  'icloud.com',
+  'me.com',
+  'mac.com',
+  'aol.com',
+  'mail.com',
+  'protonmail.com',
+  'zoho.com',
+  'ymail.com',
+  'live.com',
+  'live.jp',
+  'msn.com',
+  'nifty.com',
+  'excite.co.jp',
+  'infoseek.jp',
+  'biglobe.ne.jp',
+  'ocn.ne.jp',
+  'plala.or.jp',
+  'so-net.ne.jp',
+  'ezweb.ne.jp',
+  'au.com',
+  'docomo.ne.jp',
+  'softbank.ne.jp',
+  'i.softbank.jp',
+];
+
+const isCompanyEmail = (email: string): boolean => {
+  if (!email || !email.includes('@')) return true; // 入力途中は許可
+  const domain = email.split('@')[1]?.toLowerCase();
+  if (!domain) return true; // ドメイン未入力は許可
+  return !freeEmailDomains.includes(domain);
+};
+
+const isValidEmailFormat = (email: string): boolean => {
+  // ASCII文字のみ許可、より厳密なメール形式チェック
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  return emailRegex.test(email);
+};
+
+// 日本の電話番号形式チェック（固定電話推奨）
+const isValidPhoneFormat = (phone: string): boolean => {
+  if (!phone) return true; // 入力途中は許可
+  // 数字とハイフンのみに正規化
+  const normalized = phone.replace(/[-\s]/g, '');
+  // 10桁または11桁の数字（0から始まる）
+  if (!/^0\d{9,10}$/.test(normalized)) return false;
+  return true;
+};
+
+
 export default function ContactPage() {
   const [formStatus, setFormStatus] = useState<FormStatus>('idle');
+  const [emailError, setEmailError] = useState<string>('');
+  const [phoneError, setPhoneError] = useState<string>('');
   const [formData, setFormData] = useState({
     name: '',
     company: '',
     email: '',
-    inquiryType: '',
+    phone: '',
     message: '',
   });
 
+  const validateEmail = (email: string) => {
+    if (!email) {
+      setEmailError('');
+      return;
+    }
+
+    // メール形式が正しいかチェック
+    if (!isValidEmailFormat(email)) {
+      setEmailError('有効なメールアドレス形式でご入力ください');
+      return;
+    }
+
+    // フリーメールかチェック
+    if (!isCompanyEmail(email)) {
+      setEmailError('会社用メールアドレスをご入力ください');
+      return;
+    }
+
+    setEmailError('');
+  };
+
+  const validatePhone = (phone: string) => {
+    if (!phone) {
+      setPhoneError('');
+      return;
+    }
+
+    // 電話番号形式チェック
+    if (!isValidPhoneFormat(phone)) {
+      setPhoneError('有効な電話番号をご入力ください（例: 03-1234-5678）');
+      return;
+    }
+
+    setPhoneError('');
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // 最終バリデーション - メール
+    if (!isValidEmailFormat(formData.email)) {
+      setEmailError('有効なメールアドレス形式でご入力ください');
+      return;
+    }
+
+    if (!isCompanyEmail(formData.email)) {
+      setEmailError('会社用メールアドレスをご入力ください');
+      return;
+    }
+
+    // 最終バリデーション - 電話番号
+    if (!isValidPhoneFormat(formData.phone)) {
+      setPhoneError('有効な電話番号をご入力ください（例: 03-1234-5678）');
+      return;
+    }
+
+    setEmailError('');
+    setPhoneError('');
     setFormStatus('submitting');
 
     try {
@@ -36,7 +152,7 @@ export default function ContactPage() {
           name: '',
           company: '',
           email: '',
-          inquiryType: '',
+          phone: '',
           message: '',
         });
       } else {
@@ -48,12 +164,34 @@ export default function ContactPage() {
   };
 
   const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+
+    // メールアドレス変更時にリアルタイムバリデーション
+    if (name === 'email') {
+      validateEmail(value);
+    }
+
+    // 電話番号変更時にリアルタイムバリデーション
+    if (name === 'phone') {
+      validatePhone(value);
+    }
+  };
+
+  const handleEmailBlur = () => {
+    if (formData.email && !isValidEmailFormat(formData.email)) {
+      setEmailError('有効なメールアドレス形式でご入力ください');
+    }
+  };
+
+  const handlePhoneBlur = () => {
+    if (formData.phone) {
+      if (!isValidPhoneFormat(formData.phone)) {
+        setPhoneError('有効な電話番号をご入力ください（例: 03-1234-5678）');
+      }
+    }
   };
 
   return (
@@ -74,9 +212,7 @@ export default function ContactPage() {
               <span className="gradient-text">お問い合わせ</span>
             </h1>
             <p className="text-lg md:text-xl text-[var(--muted)] max-w-2xl mx-auto">
-              システム開発のご相談、お見積り依頼など、
-              <br className="hidden md:block" />
-              お気軽にお問い合わせください
+              システム開発のご相談、お見積り依頼など、お気軽にお問い合わせください
             </p>
           </motion.div>
         </div>
@@ -97,8 +233,6 @@ export default function ContactPage() {
                   </h2>
                   <p className="text-[var(--muted)] mb-6">
                     内容を確認次第、担当者よりご連絡いたします。
-                    <br />
-                    通常、2営業日以内にご返信いたします。
                   </p>
                   <button
                     onClick={() => setFormStatus('idle')}
@@ -120,13 +254,33 @@ export default function ContactPage() {
                           送信に失敗しました
                         </p>
                         <p className="text-sm text-[var(--muted)]">
-                          時間をおいて再度お試しいただくか、直接メールにてお問い合わせください。
+                          時間をおいて再度お試しください。
                         </p>
                       </div>
                     </div>
                   )}
 
                   <div className="space-y-6">
+                    {/* Company */}
+                    <div>
+                      <label
+                        htmlFor="company"
+                        className="block text-sm font-medium mb-2 text-[var(--foreground)]"
+                      >
+                        会社名 <span className="text-[var(--secondary)]">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        id="company"
+                        name="company"
+                        required
+                        value={formData.company}
+                        onChange={handleChange}
+                        className="w-full px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--background)] text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent transition-all placeholder:text-[var(--muted)]"
+                        placeholder="株式会社〇〇"
+                      />
+                    </div>
+
                     {/* Name */}
                     <div>
                       <label
@@ -147,25 +301,6 @@ export default function ContactPage() {
                       />
                     </div>
 
-                    {/* Company */}
-                    <div>
-                      <label
-                        htmlFor="company"
-                        className="block text-sm font-medium mb-2 text-[var(--foreground)]"
-                      >
-                        会社名
-                      </label>
-                      <input
-                        type="text"
-                        id="company"
-                        name="company"
-                        value={formData.company}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--background)] text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent transition-all placeholder:text-[var(--muted)]"
-                        placeholder="株式会社〇〇"
-                      />
-                    </div>
-
                     {/* Email */}
                     <div>
                       <label
@@ -181,32 +316,44 @@ export default function ContactPage() {
                         required
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--background)] text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent transition-all placeholder:text-[var(--muted)]"
+                        onBlur={handleEmailBlur}
+                        className={`w-full px-4 py-3 rounded-lg border bg-[var(--background)] text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent transition-all placeholder:text-[var(--muted)] ${
+                          emailError ? 'border-red-500' : 'border-[var(--border)]'
+                        }`}
                         placeholder="example@company.co.jp"
                       />
+                      {emailError && (
+                        <p className="mt-2 text-sm text-red-500">{emailError}</p>
+                      )}
+                      <p className="mt-2 text-xs text-[var(--muted)]">
+                        ※会社用メールアドレスをご入力ください
+                      </p>
                     </div>
 
-                    {/* Inquiry Type */}
+                    {/* Phone */}
                     <div>
                       <label
-                        htmlFor="inquiryType"
+                        htmlFor="phone"
                         className="block text-sm font-medium mb-2 text-[var(--foreground)]"
                       >
-                        ご相談内容 <span className="text-[var(--secondary)]">*</span>
+                        電話番号 <span className="text-[var(--secondary)]">*</span>
                       </label>
-                      <select
-                        id="inquiryType"
-                        name="inquiryType"
+                      <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
                         required
-                        value={formData.inquiryType}
+                        value={formData.phone}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--background)] text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent transition-all"
-                      >
-                        <option value="">選択してください</option>
-                        <option value="new">新規開発のご相談</option>
-                        <option value="modify">既存システムの改修</option>
-                        <option value="consult">まずは相談したい</option>
-                      </select>
+                        onBlur={handlePhoneBlur}
+                        className={`w-full px-4 py-3 rounded-lg border bg-[var(--background)] text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent transition-all placeholder:text-[var(--muted)] ${
+                          phoneError ? 'border-red-500' : 'border-[var(--border)]'
+                        }`}
+                        placeholder="03-1234-5678"
+                      />
+                      {phoneError && (
+                        <p className="mt-2 text-sm text-red-500">{phoneError}</p>
+                      )}
                     </div>
 
                     {/* Message */}
@@ -215,7 +362,7 @@ export default function ContactPage() {
                         htmlFor="message"
                         className="block text-sm font-medium mb-2 text-[var(--foreground)]"
                       >
-                        詳細 <span className="text-[var(--secondary)]">*</span>
+                        お問い合わせ内容 <span className="text-[var(--secondary)]">*</span>
                       </label>
                       <textarea
                         id="message"
@@ -225,14 +372,14 @@ export default function ContactPage() {
                         value={formData.message}
                         onChange={handleChange}
                         className="w-full px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--background)] text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent transition-all resize-none placeholder:text-[var(--muted)]"
-                        placeholder="ご相談内容の詳細をご記入ください"
+                        placeholder="ご相談内容をご記入ください"
                       />
                     </div>
 
                     {/* Submit Button */}
                     <button
                       type="submit"
-                      disabled={formStatus === 'submitting'}
+                      disabled={formStatus === 'submitting' || !!emailError || !!phoneError}
                       className="w-full btn-primary flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {formStatus === 'submitting' ? (
@@ -250,21 +397,6 @@ export default function ContactPage() {
                   </div>
                 </form>
               )}
-            </div>
-          </ScrollAnimationWrapper>
-        </div>
-      </section>
-
-      {/* Note */}
-      <section className="py-12">
-        <div className="container-custom">
-          <ScrollAnimationWrapper>
-            <div className="max-w-2xl mx-auto text-center">
-              <p className="text-[var(--muted)] text-sm">
-                お問い合わせいただいた内容は、2営業日以内にご返信いたします。
-                <br />
-                お急ぎの場合は、その旨をメッセージにご記入ください。
-              </p>
             </div>
           </ScrollAnimationWrapper>
         </div>

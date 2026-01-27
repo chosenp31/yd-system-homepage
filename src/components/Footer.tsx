@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 const navigation = [
   { name: 'Home', href: '/' },
-  { name: 'Service', href: '/service' },
+  { name: 'Business', href: '/business' },
   { name: 'Blog', href: '/blog' },
   { name: 'Company', href: '/company' },
   { name: 'Contact', href: '/contact' },
@@ -17,15 +17,14 @@ export default function Footer() {
           <div className="space-y-6">
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 rounded-lg gradient-bg flex items-center justify-center glow">
-                <span className="text-white font-bold text-lg">yd</span>
+                <span className="text-white font-bold text-lg">YD</span>
               </div>
               <span className="font-semibold text-lg tracking-wider text-[var(--foreground)]">
-                ydシステム
+                YDシステム
               </span>
             </div>
             <p className="text-[var(--muted)] text-sm leading-relaxed max-w-xs">
-              お客様の業務課題を解決する
-              オーダーメイドの業務システムを開発いたします。
+              お客様の業務に合わせたシステムを開発し、ビジネスの成長を支援します。
             </p>
           </div>
 
@@ -54,8 +53,7 @@ export default function Footer() {
               Company
             </h3>
             <ul className="space-y-3 text-[var(--muted)] text-sm">
-              <li>ydシステム会社</li>
-              <li>東京都品川区</li>
+              <li>YDシステム</li>
             </ul>
           </div>
         </div>
@@ -63,7 +61,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="border-t border-[var(--border)] mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-[var(--muted)] text-sm tracking-wide">
-            &copy; {new Date().getFullYear()} ydシステム会社. All rights reserved.
+            &copy; {new Date().getFullYear()} YDシステム. All rights reserved.
           </p>
         </div>
       </div>

@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const navigation = [
   { name: 'Home', href: '/' },
-  { name: 'Service', href: '/service' },
+  { name: 'Business', href: '/business' },
   { name: 'Blog', href: '/blog' },
   { name: 'Company', href: '/company' },
   { name: 'Contact', href: '/contact' },
@@ -38,10 +38,10 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3 group">
             <div className="w-10 h-10 rounded-lg gradient-bg flex items-center justify-center glow transition-all duration-300 group-hover:scale-105">
-              <span className="text-white font-bold text-lg">yd</span>
+              <span className="text-white font-bold text-lg">YD</span>
             </div>
             <span className="font-semibold text-lg tracking-wider text-[var(--foreground)]">
-              ydシステム
+              YDシステム
             </span>
           </Link>
 

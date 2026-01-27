@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, Calendar, User, Tag } from 'lucide-react';
 import { getAllPostSlugs, getPostWithHtml, formatDate } from '@/lib/blog';
+import BlogContent from '@/components/BlogContent';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -19,13 +20,41 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!post) {
     return {
-      title: '記事が見つかりません | ydシステム',
+      title: '記事が見つかりません | YDシステム',
     };
   }
 
+  const baseUrl = 'https://www.yd-system.com';
+  const ogImageUrl = `${baseUrl}/api/og?title=${encodeURIComponent(post.title)}&category=${encodeURIComponent(post.category || '')}`;
+
   return {
-    title: `${post.title} | ydシステム`,
+    title: `${post.title} | YDシステム`,
     description: post.excerpt,
+    openGraph: {
+      type: 'article',
+      locale: 'ja_JP',
+      url: `${baseUrl}/blog/${slug}`,
+      siteName: 'YDシステム',
+      title: post.title,
+      description: post.excerpt,
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
+      publishedTime: post.date,
+      authors: [post.author],
+      tags: post.tags,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.excerpt,
+      images: [ogImageUrl],
+    },
   };
 }
 
@@ -37,8 +66,42 @@ export default async function BlogPostPage({ params }: Props) {
     notFound();
   }
 
+  const baseUrl = 'https://www.yd-system.com';
+
+  // 記事の構造化データ
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.excerpt,
+    image: `${baseUrl}/api/og?title=${encodeURIComponent(post.title)}&category=${encodeURIComponent(post.category || '')}`,
+    datePublished: post.date,
+    dateModified: post.date,
+    author: {
+      '@type': 'Organization',
+      name: post.author,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'YDシステム',
+      logo: {
+        '@type': 'ImageObject',
+        url: `${baseUrl}/favicon.svg`,
+      },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${baseUrl}/blog/${slug}`,
+    },
+    keywords: post.tags.join(', '),
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
       {/* Header */}
       <section className="pt-32 pb-8 md:pt-40 md:pb-12">
         <div className="container-custom">
@@ -91,10 +154,7 @@ export default async function BlogPostPage({ params }: Props) {
       <section className="pb-16 md:pb-24">
         <div className="container-custom">
           <article className="max-w-3xl mx-auto">
-            <div
-              className="prose-dark"
-              dangerouslySetInnerHTML={{ __html: post.htmlContent }}
-            />
+            <BlogContent htmlContent={post.htmlContent} />
           </article>
 
           {/* Footer */}

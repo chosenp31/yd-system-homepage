@@ -3,6 +3,7 @@ import path from 'path';
 import matter from 'gray-matter';
 import { remark } from 'remark';
 import html from 'remark-html';
+import gfm from 'remark-gfm';
 
 const postsDirectory = path.join(process.cwd(), 'src/content/blog');
 
@@ -13,6 +14,7 @@ export interface BlogPost {
   excerpt: string;
   author: string;
   tags: string[];
+  category: string;
   content: string;
   published: boolean;
 }
@@ -24,6 +26,7 @@ export interface BlogPostMeta {
   excerpt: string;
   author: string;
   tags: string[];
+  category: string;
   published: boolean;
 }
 
@@ -53,6 +56,7 @@ export function getPostBySlug(slug: string): BlogPost | null {
       excerpt: data.excerpt || '',
       author: data.author || '',
       tags: data.tags || [],
+      category: data.category || 'システム開発',
       content,
       published: data.published !== false,
     };
@@ -66,6 +70,7 @@ export async function getPostWithHtml(slug: string): Promise<(BlogPost & { htmlC
   if (!post) return null;
 
   const processedContent = await remark()
+    .use(gfm)
     .use(html)
     .process(post.content);
   const htmlContent = processedContent.toString();
@@ -103,6 +108,20 @@ export function getAllTags(): string[] {
     post.tags.forEach((tag) => tagSet.add(tag));
   });
   return Array.from(tagSet).sort();
+}
+
+export function getAllCategories(): string[] {
+  const allPosts = getAllPosts();
+  const categorySet = new Set<string>();
+  allPosts.forEach((post) => {
+    categorySet.add(post.category);
+  });
+  return Array.from(categorySet).sort();
+}
+
+export function getPostsByCategory(category: string): BlogPostMeta[] {
+  const allPosts = getAllPosts();
+  return allPosts.filter((post) => post.category === category);
 }
 
 export function formatDate(dateString: string): string {

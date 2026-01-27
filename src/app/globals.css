@@ -359,3 +359,33 @@ html {
   color: var(--muted);
   font-style: italic;
 }
+
+.prose-dark table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.9rem;
+}
+
+.prose-dark th,
+.prose-dark td {
+  border: 1px solid var(--border);
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+.prose-dark th {
+  background: var(--background-secondary);
+  color: var(--foreground);
+  font-weight: 600;
+}
+
+.prose-dark tr:nth-child(even) {
+  background: var(--background-secondary);
+}
+
+.prose-dark hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}

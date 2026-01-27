@@ -40,6 +40,6 @@ ydシステム会社のコーポレートサイト（ホームページ）の要
 
 | 項目 | 値 |
 |------|-----|
-| 本番URL | https://homepage-theta-pearl.vercel.app/ |
+| 本番URL | https://www.yd-system.com |
 | Vercelプロジェクト | naotos-projects-6818d7a3/homepage |
 | 最終デプロイ日 | 2026-01-16 |

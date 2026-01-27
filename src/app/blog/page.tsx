@@ -3,8 +3,8 @@ import { getAllPosts, formatDate } from '@/lib/blog';
 import BlogCard from '@/components/BlogCard';
 
 export const metadata: Metadata = {
-  title: 'ブログ | ydシステム',
-  description: 'ydシステムのブログ。システム開発に関する技術情報や、業務効率化のヒントをお届けします。',
+  title: 'ブログ',
+  description: 'YDシステムのブログ。システム開発に関する技術情報や、業務効率化のヒントをお届けします。',
 };
 
 export default function BlogPage() {
@@ -23,9 +23,7 @@ export default function BlogPage() {
               <span className="gradient-text">ブログ</span>
             </h1>
             <p className="text-lg md:text-xl text-[var(--muted)] max-w-2xl mx-auto">
-              システム開発に関する技術情報や、
-              <br className="hidden md:block" />
-              業務効率化のヒントをお届けします
+              システム開発に関する技術情報や、業務効率化のヒントをお届けします
             </p>
           </div>
         </div>
@@ -51,6 +49,7 @@ export default function BlogPage() {
                   excerpt={post.excerpt}
                   author={post.author}
                   tags={post.tags}
+                  category={post.category}
                 />
               ))}
             </div>
