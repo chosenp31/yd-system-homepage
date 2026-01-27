@@ -39,6 +39,8 @@ published: true
 
 ## 初級者と上級者の違い
 
+![AIと人間の役割](/images/blog/ai-vs-human-tasks-infographic.png)
+
 **初級者:** 「やってもらう指示」を書く
 
 **上級者:** 「生成物を設計する意識」で作成する

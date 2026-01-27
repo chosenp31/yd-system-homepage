@@ -18,6 +18,8 @@ Anthropic CEO Dario Amodeiは規制推進派の代表格。一方、一部のテ
 
 ## Amodeiの規制論
 
+![AI規制の議論](/images/blog/chatbot-success-factors-infographic.png)
+
 60 Minutesのインタビューで、Amodeiは明確な立場を示しました：
 
 > 「AIはより厳しく規制されるべきです。これらの決定が少数の企業、少数の人々によって行われることに深い不快感を覚えます」

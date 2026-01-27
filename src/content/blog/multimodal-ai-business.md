@@ -55,6 +55,8 @@ Google DeepMind CEO Demis Hassabisは、2026年の展望について：
 
 ## ビジネスでの活用事例
 
+![マルチモーダルAI活用領域](/images/blog/chatbot-usecases-infographic.png)
+
 ### 1. 製造業：外観検査
 
 製品の画像をAIに送ると、不良品を自動検出。

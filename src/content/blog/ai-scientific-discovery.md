@@ -22,6 +22,8 @@ OpenAI CEO Sam Altmanは、AIによる科学的発見に大きな期待を寄せ
 
 ## すでに起きている変化
 
+![AIによる科学的発見](/images/blog/ai-workflow-infographic.png)
+
 Anthropicは、科学者がClaudeをどのように活用しているかを報告しています：
 
 > 「科学者がClaudeを使って研究を加速させている」

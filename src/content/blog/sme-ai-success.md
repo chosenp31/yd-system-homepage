@@ -20,6 +20,8 @@ published: true
 
 ## AI導入で成功するための5つのポイント
 
+![成功の5つのポイント](/images/blog/success-pillars-infographic.png)
+
 ### 1. 解決したい課題を明確にする
 
 **失敗パターン:**

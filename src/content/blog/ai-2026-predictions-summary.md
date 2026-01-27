@@ -18,6 +18,8 @@ published: true
 
 ## 技術の進歩
 
+![AI技術の進歩](/images/blog/ai-adoption-timeline-infographic.png)
+
 ### OpenAI（Sam Altman）
 
 > 「2026年には、新しい洞察を発見できるシステムが登場する可能性が高い」

@@ -35,6 +35,8 @@ Anthropicは、AIの「誠実さ」を重要視しています。
 
 ## 他社モデルとの比較
 
+![Claude Opus 4.5の特徴](/images/blog/hybrid-approach-infographic.png)
+
 ### コーディング能力
 
 | モデル | SWE-bench |

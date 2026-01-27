@@ -40,6 +40,8 @@ RAGは、質問に関連する情報を社内データベースから検索し�
 
 ## 企業での活用事例
 
+![RAG活用領域](/images/blog/chatbot-usecases-infographic.png)
+
 ### 社内問い合わせ対応
 
 人事・総務への問い合わせをRAG搭載チャットボットが対応。

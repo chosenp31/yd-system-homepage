@@ -22,6 +22,8 @@ Google DeepMind CEO Demis Hassabisは、AGI（汎用人工知能）について�
 
 ## 現在のAIは「まったく及ばない」
 
+![AGIへのブレイクスルー](/images/blog/ai-adoption-timeline-infographic.png)
+
 Hassabisは、現在のAIシステムについて冷静な評価を下しています：
 
 > 「今日のAIシステムは、印象的ではあるものの、人間レベルの汎用人工知能には『まったく及ばない』」

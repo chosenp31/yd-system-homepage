@@ -18,6 +18,8 @@ Word、Excel、PowerPoint、Outlook、Teamsなど、日常的に使うツール�
 
 ## 各ツールでの活用方法
 
+![Microsoft Copilot活用領域](/images/blog/chatbot-usecases-infographic.png)
+
 ### Word
 
 **できること:**

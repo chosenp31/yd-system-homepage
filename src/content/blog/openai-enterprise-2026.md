@@ -20,6 +20,8 @@ Sam Altmanによると：
 
 ## GPT-5の性能データ
 
+![OpenAIエンタープライズ戦略](/images/blog/success-pillars-infographic.png)
+
 OpenAIの内部ベンチマーク「GDP-val」（知識労働のベンチマーク）での結果：
 
 | モデル | 知識労働者に勝つ/引き分けの割合 |

@@ -28,6 +28,8 @@ published: true
 
 ## データセンター投資の規模
 
+![AIインフラの成長](/images/blog/ai-adoption-timeline-infographic.png)
+
 NVIDIAの業績がこのブームを証明しています：
 
 - **データセンター事業**: 四半期で512億ドル

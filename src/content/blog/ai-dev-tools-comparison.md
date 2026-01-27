@@ -66,6 +66,8 @@ published: true
 
 ## 使い分けの指針
 
+![ツールの使い分け](/images/blog/hybrid-approach-infographic.png)
+
 | 目的 | 推奨ツール |
 |------|-----------|
 | 日常的なコード補完 | Copilot |

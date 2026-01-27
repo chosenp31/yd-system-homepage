@@ -16,6 +16,8 @@ published: true
 
 ## 主要なリスクと対策
 
+![リスク管理のポイント](/images/blog/chatbot-success-factors-infographic.png)
+
 ### リスク1: 情報漏洩
 
 **問題:**

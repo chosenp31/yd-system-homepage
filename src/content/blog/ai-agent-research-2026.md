@@ -20,6 +20,8 @@ NVIDIA CEO Jensen Huangは、CES 2026で次のように振り返っています�
 
 ## 最新研究論文の動向
 
+![AIエージェントの進化](/images/blog/ai-workflow-infographic.png)
+
 ### 「AI Agents vs. Agentic AI」（arXiv, 2025年5月）
 
 この論文は、**AIエージェント**と**エージェンティックAI**を明確に区別しています：

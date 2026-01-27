@@ -22,6 +22,8 @@ published: true
 
 ## ノーコード・ローコードの限界
 
+![開発アプローチの選択](/images/blog/outsourcing-risks-infographic.png)
+
 ### 1. カスタマイズの制限
 
 ローコード開発では機能の拡張ができますが、**サービスが提供する範囲を超えることはできません**。

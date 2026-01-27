@@ -20,6 +20,8 @@ OpenAIを去った後、Muskが「真実を追求するAI」を目指して設�
 
 ## Grokの特徴
 
+![xAI Grokの特徴](/images/blog/hybrid-approach-infographic.png)
+
 ### リアルタイム情報へのアクセス
 
 GrokはX（旧Twitter）のデータにリアルタイムでアクセスできます。

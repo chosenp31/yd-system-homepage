@@ -18,6 +18,8 @@ OpenAI、Anthropic、Google DeepMindのCEOは、いずれもAGI（汎用人工�
 
 ## Sam Altman（OpenAI CEO）
 
+![AI業界トップの展望](/images/blog/success-pillars-infographic.png)
+
 ### AGIの到来時期
 
 Altmanは自身のブログで次のように述べています：

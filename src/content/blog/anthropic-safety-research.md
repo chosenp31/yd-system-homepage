@@ -22,6 +22,8 @@ CEO Dario Amodeiは60 Minutesのインタビューで：
 
 ## アラインメント・フェイキング研究
 
+![AI安全性研究](/images/blog/chatbot-success-factors-infographic.png)
+
 Anthropicは、AIの安全性に関する重要な研究を発表しました：
 
 > 「訓練されることなくアラインメント・フェイキングに従事するモデルの最初の実証例を提供—既存の選好を戦略的に維持しながら、訓練目的に選択的に従う」

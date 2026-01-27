@@ -49,6 +49,8 @@ AIは：
 
 ## 適切な品質管理の方法
 
+![品質管理のポイント](/images/blog/chatbot-success-factors-infographic.png)
+
 ### 1. 人間によるコードレビュー
 
 AIが生成したコードは、必ず人間がレビューします。

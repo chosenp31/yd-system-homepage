@@ -18,6 +18,8 @@ Goldman SachsとMcKinseyの調査レポートから、データに基づく現�
 
 ## Goldman Sachsの調査結果
 
+![AIと人間の役割](/images/blog/ai-vs-human-tasks-infographic.png)
+
 ### 全体的な影響
 
 Goldman Sachsの推計によると：
