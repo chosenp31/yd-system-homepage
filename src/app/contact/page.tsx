@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send, CheckCircle2, AlertCircle } from 'lucide-react';
-import ScrollAnimationWrapper from '@/components/ScrollAnimationWrapper';
 
 type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
 
@@ -219,18 +218,33 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Form */}
-      <section className="section-padding bg-white">
+      <section className="section-padding bg-[#f8fafc]">
         <div className="container-custom">
-          <ScrollAnimationWrapper>
-            <div className="max-w-2xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="max-w-2xl mx-auto"
+          >
+            <div className="bg-white rounded-[20px] p-8 md:p-12 shadow-[0_10px_40px_rgba(79,124,255,0.12)] border border-[rgba(79,124,255,0.1)]">
+              <div className="text-center mb-10">
+                <span className="inline-block text-[var(--primary)] font-medium tracking-[0.3em] uppercase text-xs mb-4 bg-[rgba(79,124,255,0.08)] px-4 py-2 rounded-full">
+                  Contact
+                </span>
+                <h2 className="text-2xl md:text-3xl font-bold text-[#1a1a2e] mb-2">
+                  お問い合わせフォーム
+                </h2>
+              </div>
+
               {formStatus === 'success' ? (
-                <div className="glass rounded-2xl p-8 md:p-12 border border-[var(--border)] text-center">
+                <div className="text-center">
                   <div className="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center mx-auto mb-6">
                     <CheckCircle2 className="w-8 h-8 text-green-500" />
                   </div>
-                  <h2 className="text-2xl font-bold mb-4 text-[var(--foreground)]">
+                  <h3 className="text-2xl font-bold mb-4 text-[var(--foreground)]">
                     お問い合わせありがとうございます
-                  </h2>
+                  </h3>
                   <p className="text-[var(--muted)] mb-6">
                     内容を確認次第、担当者よりご連絡いたします。
                   </p>
@@ -242,10 +256,7 @@ export default function ContactPage() {
                   </button>
                 </div>
               ) : (
-                <form
-                  onSubmit={handleSubmit}
-                  className="glass rounded-2xl p-8 md:p-12 border border-[var(--border)]"
-                >
+                <form onSubmit={handleSubmit}>
                   {formStatus === 'error' && (
                     <div className="mb-6 p-4 bg-[var(--secondary)]/10 border border-[var(--secondary)]/20 rounded-lg flex items-start gap-3">
                       <AlertCircle className="w-5 h-5 text-[var(--secondary)] flex-shrink-0 mt-0.5" />
@@ -398,7 +409,7 @@ export default function ContactPage() {
                 </form>
               )}
             </div>
-          </ScrollAnimationWrapper>
+          </motion.div>
         </div>
       </section>
     </>
