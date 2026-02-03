@@ -93,7 +93,7 @@ export default function Home() {
               <span className="inline-block text-[var(--primary)] font-medium tracking-[0.3em] uppercase text-xs mb-6 bg-[rgba(79,124,255,0.08)] px-4 py-2 rounded-full">
                 What We Do
               </span>
-              <h2 className="text-2xl md:text-3xl font-bold mb-3 text-[#1a1a2e]">
+              <h2 className="text-2xl md:text-3xl font-bold mb-3 text-[#4d4d62]">
                 AIを中心とする
               </h2>
               <p className="text-xl md:text-2xl font-semibold mb-8 text-[var(--primary)]">

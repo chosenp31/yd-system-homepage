@@ -232,7 +232,7 @@ export default function ContactPage() {
                 <span className="inline-block text-[var(--primary)] font-medium tracking-[0.3em] uppercase text-xs mb-4 bg-[rgba(79,124,255,0.08)] px-4 py-2 rounded-full">
                   Contact
                 </span>
-                <h2 className="text-2xl md:text-3xl font-bold text-[#1a1a2e] mb-2">
+                <h2 className="text-2xl md:text-3xl font-bold text-[#4d4d62] mb-2">
                   お問い合わせフォーム
                 </h2>
               </div>
