@@ -118,6 +118,52 @@ export default function RootLayout({
             gtag('config', '${GA_ID}');
           `}
         </Script>
+        {/* YD Analytics - IPベーストラッキング */}
+        <Script id="yd-analytics" strategy="afterInteractive">
+          {`
+            (function() {
+              function getSessionId() {
+                const SESSION_KEY = 'yd_tracking_session';
+                const SESSION_TIMEOUT = 30 * 60 * 1000;
+                const stored = localStorage.getItem(SESSION_KEY);
+                if (stored) {
+                  try {
+                    const { sessionId, timestamp } = JSON.parse(stored);
+                    if (Date.now() - timestamp < SESSION_TIMEOUT) {
+                      return sessionId;
+                    }
+                  } catch (e) {}
+                }
+                const newSessionId = crypto.randomUUID();
+                localStorage.setItem(SESSION_KEY, JSON.stringify({
+                  sessionId: newSessionId,
+                  timestamp: Date.now()
+                }));
+                return newSessionId;
+              }
+
+              function track() {
+                const sessionId = getSessionId();
+                fetch('https://analytics-six.vercel.app/api/track', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({
+                    siteId: 'yd-system',
+                    pagePath: window.location.pathname,
+                    referrer: document.referrer || undefined,
+                    sessionId: sessionId
+                  })
+                }).catch(err => console.warn('YD Analytics tracking failed:', err));
+              }
+
+              if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', track);
+              } else {
+                track();
+              }
+            })();
+          `}
+        </Script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
@@ -126,14 +172,6 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
-        {/* YD Analytics トラッキング - デプロイ後にURLを更新 */}
-        {process.env.NEXT_PUBLIC_ANALYTICS_URL && (
-          <script
-            src={`${process.env.NEXT_PUBLIC_ANALYTICS_URL}/tracker.js`}
-            data-site-id="yd-system"
-            defer
-          />
-        )}
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}

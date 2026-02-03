@@ -26,7 +26,7 @@ export default function CompanyPage() {
       </section>
 
       {/* Mission */}
-      <section className="section-padding bg-[var(--background-secondary)]/30">
+      <section className="section-padding bg-white">
         <div className="container-custom">
           <ScrollAnimationWrapper>
             <div className="max-w-3xl mx-auto text-center">
@@ -75,7 +75,7 @@ export default function CompanyPage() {
       </section>
 
       {/* Company Info */}
-      <section className="section-padding bg-[var(--background-secondary)]/30">
+      <section className="section-padding bg-white">
         <div className="container-custom">
           <ScrollAnimationWrapper>
             <div className="max-w-3xl mx-auto">

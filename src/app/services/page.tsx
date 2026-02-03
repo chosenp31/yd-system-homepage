@@ -29,7 +29,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Services List */}
-      <section className="section-padding bg-[var(--background-secondary)]/30">
+      <section className="section-padding bg-white">
         <div className="container-custom">
           <Services />
         </div>

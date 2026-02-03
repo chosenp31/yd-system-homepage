@@ -10,7 +10,7 @@ const navigation = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-[var(--border)] bg-[var(--background-secondary)]/50">
+    <footer className="border-t border-gray-200 bg-white">
       <div className="container-custom py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Company Info */}

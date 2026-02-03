@@ -30,7 +30,7 @@ export default function BlogPage() {
       </section>
 
       {/* Blog List */}
-      <section className="section-padding bg-[var(--background-secondary)]/30">
+      <section className="section-padding bg-white">
         <div className="container-custom">
           {posts.length === 0 ? (
             <div className="text-center py-12">

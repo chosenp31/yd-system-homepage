@@ -219,7 +219,7 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Form */}
-      <section className="section-padding bg-[var(--background-secondary)]/30">
+      <section className="section-padding bg-white">
         <div className="container-custom">
           <ScrollAnimationWrapper>
             <div className="max-w-2xl mx-auto">
