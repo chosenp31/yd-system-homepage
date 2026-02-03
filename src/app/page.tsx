@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const ParticleSphere = dynamic(() => import('@/components/ParticleSphere'), {
   ssr: false,
@@ -75,6 +76,36 @@ export default function Home() {
               </Link>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* What We Do Section */}
+      <section className="section-padding bg-[var(--background-secondary)]/30">
+        <div className="container-custom">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="max-w-3xl mx-auto text-center"
+          >
+            <p className="text-[var(--primary)] font-medium tracking-[0.3em] uppercase text-sm mb-6">
+              What We Do
+            </p>
+            <h2 className="text-2xl md:text-3xl font-bold mb-6 text-[var(--foreground)]">
+              AIを中心とする
+            </h2>
+            <p className="text-[var(--muted)] leading-relaxed mb-8">
+              最先端テクノロジーで企業の成長を支援
+            </p>
+            <Link
+              href="/services"
+              className="inline-flex items-center gap-2 text-[var(--primary)] hover:underline font-medium"
+            >
+              サービスを見る
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </motion.div>
         </div>
       </section>
 
