@@ -69,10 +69,10 @@ export default function Home() {
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
-                href="/business"
+                href="/services"
                 className="btn-secondary text-sm px-5 py-2.5 inline-flex items-center justify-center gap-2"
               >
-                事業内容
+                サービス
               </Link>
             </div>
           </div>
@@ -99,10 +99,10 @@ export default function Home() {
               システムは「買う」時代から「創る」時代へ。AI技術を活用し、御社のビジネスに最適化されたシステムを開発。競争力の源泉を、自社の手に取り戻す。
             </p>
             <Link
-              href="/business"
+              href="/services"
               className="inline-flex items-center gap-2 text-[var(--primary)] hover:underline font-medium"
             >
-              事業内容を見る
+              サービスを見る
               <ArrowRight className="w-4 h-4" />
             </Link>
           </motion.div>
