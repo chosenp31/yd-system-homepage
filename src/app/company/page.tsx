@@ -33,7 +33,7 @@ export default function CompanyPage() {
               <p className="text-[var(--primary)] font-medium tracking-[0.3em] uppercase text-sm mb-6">
                 Mission
               </p>
-              <h2 className="text-2xl md:text-3xl font-bold text-[var(--foreground)]">
+              <h2 className="text-2xl md:text-3xl font-bold text-[var(--primary)]">
                 テクノロジーで、ビジネスの可能性を広げる。
               </h2>
             </div>
@@ -42,7 +42,7 @@ export default function CompanyPage() {
       </section>
 
       {/* Representative */}
-      <section className="section-padding">
+      <section className="section-padding bg-white">
         <div className="container-custom">
           <ScrollAnimationWrapper>
             <div className="max-w-3xl mx-auto">

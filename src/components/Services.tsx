@@ -61,7 +61,7 @@ export default function Services() {
             {service.icon}
           </div>
 
-          <h3 className="text-xl font-bold text-[var(--foreground)] mb-2">
+          <h3 className="text-xl font-bold text-[var(--primary)] mb-2">
             {service.name}
           </h3>
 
