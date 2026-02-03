@@ -27,10 +27,10 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-white ${
         isScrolled
-          ? 'glass border-b border-[var(--border)]'
-          : 'bg-transparent'
+          ? 'border-b border-gray-200 shadow-sm'
+          : ''
       }`}
     >
       <nav className="container-custom">
@@ -81,7 +81,7 @@ export default function Header() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden glass border-t border-[var(--border)]"
+            className="md:hidden bg-white border-t border-gray-200"
           >
             <div className="container-custom py-6 space-y-4">
               {navigation.map((item) => (

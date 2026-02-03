@@ -80,7 +80,7 @@ export default function Home() {
       </section>
 
       {/* What We Do Section */}
-      <section className="section-padding bg-[var(--background-secondary)]/30">
+      <section className="section-padding bg-white">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
