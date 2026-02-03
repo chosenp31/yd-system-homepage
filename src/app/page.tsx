@@ -51,9 +51,9 @@ export default function Home() {
             }`}
           >
             <h1 className="text-3xl md:text-4xl font-bold leading-tight mb-4">
-              <span className="gradient-text">AIで、</span>
+              <span className="text-[var(--primary)]">AIで、</span>
               <br />
-              <span className="gradient-text">業務を進化させる</span>
+              <span className="text-[var(--primary)]">業務を進化させる</span>
             </h1>
             <p className="text-sm md:text-base text-[#9090b0] leading-relaxed mb-6">
               外部任せだったシステムを、自社専用に開発。
@@ -80,31 +80,33 @@ export default function Home() {
       </section>
 
       {/* What We Do Section */}
-      <section className="section-padding bg-white">
+      <section className="section-padding bg-[#f8fafc]">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="max-w-3xl mx-auto text-center"
+            className="max-w-3xl mx-auto"
           >
-            <p className="text-[var(--primary)] font-medium tracking-[0.3em] uppercase text-sm mb-6">
-              What We Do
-            </p>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4 text-[var(--primary)]">
-              AIを中心とする
-            </h2>
-            <p className="text-2xl md:text-3xl font-bold mb-8 text-[var(--primary)]">
-              最先端テクノロジーで企業の成長を支援
-            </p>
-            <Link
-              href="/services"
-              className="inline-flex items-center gap-2 text-[var(--primary)] hover:underline font-medium"
-            >
-              サービスを見る
-              <ArrowRight className="w-4 h-4" />
-            </Link>
+            <div className="bg-white rounded-[20px] p-10 md:p-14 text-center shadow-[0_10px_40px_rgba(79,124,255,0.12)] border border-[rgba(79,124,255,0.1)]">
+              <span className="inline-block text-[var(--primary)] font-medium tracking-[0.3em] uppercase text-xs mb-6 bg-[rgba(79,124,255,0.08)] px-4 py-2 rounded-full">
+                What We Do
+              </span>
+              <h2 className="text-2xl md:text-3xl font-bold mb-3 text-[#1a1a2e]">
+                AIを中心とする
+              </h2>
+              <p className="text-xl md:text-2xl font-semibold mb-8 text-[var(--primary)]">
+                最先端テクノロジーで企業の成長を支援
+              </p>
+              <Link
+                href="/services"
+                className="inline-flex items-center gap-2 text-white font-medium bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] px-8 py-4 rounded-xl shadow-[0_4px_15px_rgba(79,124,255,0.35)] hover:shadow-[0_8px_25px_rgba(79,124,255,0.45)] hover:-translate-y-0.5 transition-all duration-300"
+              >
+                サービスを見る
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
           </motion.div>
         </div>
       </section>

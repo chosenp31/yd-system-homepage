@@ -19,7 +19,7 @@ export default function BusinessPage() {
               Business
             </p>
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              <span className="gradient-text">事業内容</span>
+              <span className="text-[var(--primary)]">事業内容</span>
             </h1>
           </motion.div>
         </div>
@@ -61,7 +61,7 @@ export default function BusinessPage() {
               AI-Driven Development
             </p>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              <span className="gradient-text">AI駆動開発</span>
+              <span className="text-[var(--primary)]">AI駆動開発</span>
             </h2>
             <p className="text-[var(--muted)] max-w-2xl mx-auto">
               最新のAI技術を開発プロセスに統合。従来の開発手法と比較して、大幅な工数削減と品質向上を両立します。

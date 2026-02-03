@@ -18,7 +18,7 @@ export default function CompanyPage() {
               Company
             </p>
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              <span className="gradient-text">会社概要</span>
+              <span className="text-[var(--primary)]">会社概要</span>
             </h1>
           </motion.div>
         </div>

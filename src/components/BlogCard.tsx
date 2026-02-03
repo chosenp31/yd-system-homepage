@@ -22,7 +22,7 @@ export default function BlogCard({
 }: BlogCardProps) {
   return (
     <Link href={`/blog/${slug}`}>
-      <article className="glass rounded-2xl overflow-hidden border border-[var(--border)] card-hover h-full flex flex-col">
+      <article className="bg-white rounded-[18px] overflow-hidden border border-[rgba(79,124,255,0.15)] shadow-[0_8px_30px_rgba(79,124,255,0.15)] hover:shadow-[0_12px_40px_rgba(79,124,255,0.25)] hover:border-[rgba(79,124,255,0.4)] hover:-translate-y-1.5 transition-all duration-300 h-full flex flex-col">
         {/* Content */}
         <div className="p-6 flex flex-col flex-1">
           {/* Category & Tags */}

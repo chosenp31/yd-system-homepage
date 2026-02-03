@@ -208,7 +208,7 @@ export default function ContactPage() {
               Contact Us
             </p>
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              <span className="gradient-text">お問い合わせ</span>
+              <span className="text-[var(--primary)]">お問い合わせ</span>
             </h1>
             <p className="text-lg md:text-xl text-[var(--muted)] max-w-2xl mx-auto">
               システム開発のご相談、お見積り依頼など、お気軽にお問い合わせください

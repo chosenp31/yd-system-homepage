@@ -47,7 +47,7 @@ export default function Services() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: index * 0.1 }}
           viewport={{ once: true }}
-          className="relative glass rounded-xl p-6 border border-[var(--border)] hover:border-[var(--primary)]/50 transition-all duration-300"
+          className="relative bg-white rounded-2xl p-6 border border-[rgba(79,124,255,0.08)] shadow-[0_8px_30px_rgba(79,124,255,0.1)] hover:shadow-[0_12px_40px_rgba(79,124,255,0.18)] hover:border-[rgba(79,124,255,0.3)] hover:-translate-y-1 transition-all duration-300"
         >
           {service.status === 'coming_soon' && (
             <div className="absolute top-4 right-4">

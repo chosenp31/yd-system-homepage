@@ -20,7 +20,7 @@ export default function BlogPage() {
               Blog
             </p>
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              <span className="gradient-text">ブログ</span>
+              <span className="text-[var(--primary)]">ブログ</span>
             </h1>
             <p className="text-lg md:text-xl text-[var(--muted)] max-w-2xl mx-auto">
               システム開発に関する技術情報や、業務効率化のヒントをお届けします
