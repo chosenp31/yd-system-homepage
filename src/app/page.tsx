@@ -92,10 +92,10 @@ export default function Home() {
             <p className="text-[var(--primary)] font-medium tracking-[0.3em] uppercase text-sm mb-6">
               What We Do
             </p>
-            <h2 className="text-2xl md:text-3xl font-bold mb-6 text-[var(--foreground)]">
+            <h2 className="text-2xl md:text-3xl font-bold mb-4 text-[var(--foreground)]">
               AIを中心とする
             </h2>
-            <p className="text-[var(--muted)] leading-relaxed mb-8">
+            <p className="text-2xl md:text-3xl font-bold mb-8 text-[var(--foreground)]">
               最先端テクノロジーで企業の成長を支援
             </p>
             <Link

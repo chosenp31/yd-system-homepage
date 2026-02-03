@@ -22,7 +22,7 @@ export default function ServicesPage() {
               <span className="gradient-text">サービス</span>
             </h1>
             <p className="text-[var(--muted)] max-w-2xl mx-auto">
-              業務効率化を支援するサービスを提供しています
+              企業の成長を支援するサービスを提供
             </p>
           </motion.div>
         </div>
